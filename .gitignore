@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.playwright-mcp/
+*_openapi_config.json
+.auth_state
+.auth_callback
+.access_token

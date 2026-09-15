@@ -1,0 +1,13 @@
+{
+  "domain": "nuheat_conductor",
+  "name": "Nuheat Conductor",
+  "codeowners": ["@alzahalemnci"],
+  "config_flow": true,
+  "dependencies": ["application_credentials"],
+  "documentation": "https://github.com/alzahalemnci/nuheat-ha",
+  "integration_type": "hub",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/alzahalemnci/nuheat-ha/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

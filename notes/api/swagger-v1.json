@@ -1,0 +1,918 @@
+{
+    "openapi": "3.0.4",
+    "info": {
+        "title": "Open API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1/Account": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Get the AccountModel.",
+                "operationId": "GetAccount",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AccountModel"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "If user is not authorized."
+                    },
+                    "500": {
+                        "description": "Failed to retrieve user account. Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/EnergyLog/Day/{serialNumber}/{date}": {
+            "get": {
+                "tags": [
+                    "EnergyLog"
+                ],
+                "summary": "Get the list of DataEnergyLog.",
+                "parameters": [
+                    {
+                        "name": "serialNumber",
+                        "in": "path",
+                        "description": "SerialNumber of the thermostat.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "Date format yyyy-MM-dd.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EnergyUsageModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User input is not valid."
+                    },
+                    "401": {
+                        "description": "If users is not authorized."
+                    },
+                    "404": {
+                        "description": "If the thermostat is not found."
+                    },
+                    "500": {
+                        "description": "Failed to retrieve Day Energy Log. Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/EnergyLog/Week/{serialNumber}/{date}": {
+            "get": {
+                "tags": [
+                    "EnergyLog"
+                ],
+                "summary": "Get the list of DataEnergyLog.",
+                "parameters": [
+                    {
+                        "name": "serialNumber",
+                        "in": "path",
+                        "description": "SerialNumber of the thermostat.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "Date format yyyy-MM-dd.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EnergyUsageModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User input is not valid."
+                    },
+                    "401": {
+                        "description": "If users is not authorized."
+                    },
+                    "404": {
+                        "description": "If the thermostat is not found."
+                    },
+                    "500": {
+                        "description": "Failed to retrieve Week Energy Log. Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/EnergyLog/Month/{serialNumber}/{year}": {
+            "get": {
+                "tags": [
+                    "EnergyLog"
+                ],
+                "summary": "Get the list of DataEnergyLog.",
+                "parameters": [
+                    {
+                        "name": "serialNumber",
+                        "in": "path",
+                        "description": "SerialNumber of the thermostat.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "in": "path",
+                        "description": "Year format YYYY.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EnergyUsageModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User input is not valid."
+                    },
+                    "401": {
+                        "description": "If users is not authorized."
+                    },
+                    "404": {
+                        "description": "If the thermostat is not found."
+                    },
+                    "500": {
+                        "description": "Failed to retrieve Month Energy Log. Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/Group": {
+            "get": {
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Get the list of GroupModel.",
+                "responses": {
+                    "200": {
+                        "description": "Returns the list of groups.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GroupModel"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "If the user is not authorized."
+                    },
+                    "500": {
+                        "description": "Failed to retrieve groups. Internal Server Error."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Update groupModel awayMode.",
+                "requestBody": {
+                    "description": "groupModel that should be updated.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GroupUpdateModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GroupUpdateModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GroupUpdateModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful Response, client doesn't need to go away from its current page."
+                    },
+                    "400": {
+                        "description": "User input is not valid."
+                    },
+                    "401": {
+                        "description": "If users is not authorized."
+                    },
+                    "500": {
+                        "description": "Failed to update group. Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/Group/{groupId}": {
+            "get": {
+                "tags": [
+                    "Group"
+                ],
+                "summary": "Get the GroupModel.",
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "description": "GroupModel identifier.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the Group model.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GroupModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User input is not valid."
+                    },
+                    "401": {
+                        "description": "If the user is not authorized."
+                    },
+                    "404": {
+                        "description": "If the GroupModel not found."
+                    },
+                    "500": {
+                        "description": "Failed to retrieve group. Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/Schedule": {
+            "get": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "Get the list of ScheduleModel.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ScheduleModel"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "If users is not authorized."
+                    },
+                    "405": {
+                        "description": "Method not allowed since thermostat schedules are incompatible."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "Updates the schedule data.",
+                "requestBody": {
+                    "description": "ScheduleModel model.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScheduleModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScheduleModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScheduleModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmptyResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "If users is not authorized."
+                    },
+                    "405": {
+                        "description": "Method not allowed since thermostat schedules are incompatible."
+                    }
+                }
+            }
+        },
+        "/api/v1/Schedule/{serialNumber}": {
+            "get": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "Get the ScheduleModel.",
+                "parameters": [
+                    {
+                        "name": "serialNumber",
+                        "in": "path",
+                        "description": "The thermostat serial number.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ScheduleModel"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "If users is not authorized."
+                    },
+                    "405": {
+                        "description": "Method not allowed since thermostat schedules are incompatible."
+                    }
+                }
+            }
+        },
+        "/api/v1/Thermostat": {
+            "get": {
+                "tags": [
+                    "Thermostat"
+                ],
+                "summary": "Get the list of ThermostatModel.",
+                "responses": {
+                    "200": {
+                        "description": "Returns the thermostat model.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ThermostatModel"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "If the user is not authorized."
+                    },
+                    "404": {
+                        "description": "If the thermostats list empty."
+                    },
+                    "500": {
+                        "description": "Failed to retrieve thermostats. Internal Server Error."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Thermostat"
+                ],
+                "summary": "Set thermostat mode to Hold.",
+                "requestBody": {
+                    "description": "ThermostatUpdateModel model.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ThermostatUpdateModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ThermostatUpdateModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ThermostatUpdateModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful Response."
+                    },
+                    "400": {
+                        "description": "If request is invalid."
+                    },
+                    "401": {
+                        "description": "If user is not authorized."
+                    },
+                    "404": {
+                        "description": "If the thermostat cannot be found for provided serial number."
+                    },
+                    "500": {
+                        "description": "Failed to set Auto mode for thermostat. Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/Thermostat/{serialNumber}": {
+            "get": {
+                "tags": [
+                    "Thermostat"
+                ],
+                "summary": "Get the ThermostatModel.",
+                "parameters": [
+                    {
+                        "name": "serialNumber",
+                        "in": "path",
+                        "description": "The serial number of the thermostat to retrieve.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the thermostat model.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ThermostatModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "If the user input is not valid."
+                    },
+                    "401": {
+                        "description": "If the user is not authorized."
+                    },
+                    "404": {
+                        "description": "If the thermostat is not found."
+                    },
+                    "500": {
+                        "description": "If there is an internal server error."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AccountModel": {
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "type": "string",
+                        "description": "Gets or sets first name of the account owner.",
+                        "nullable": true
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "description": "Gets or sets last name of the account owner.",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Gets or sets email of the account owner.",
+                        "nullable": true
+                    },
+                    "use12Hour": {
+                        "type": "boolean",
+                        "description": "Gets or sets a value indicating whether defines the accounts preferred way to display time.\nUse12Hour = true - Will use AM and PM eg. 6:00 PM\nUse12Hour = false - Will use the 24 hour format, eg. 18:00."
+                    },
+                    "temperatureScale": {
+                        "type": "string",
+                        "description": "Gets or sets defines the accounts preferred Temperature Scale.\nWill return either 'Fahrenheit' or 'Celsius'.",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Any": {
+                "type": "object",
+                "properties": {
+                    "typeUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Code": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "EmptyResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "$ref": "#/components/schemas/Status"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "EnergyUsageEntryModel": {
+                "type": "object",
+                "properties": {
+                    "entry": {
+                        "type": "string",
+                        "description": "Gets or sets the entry number.\nFor the EnergyLog Day endpoint this will be the hours of the day.\nFor the EnergyLog Week endpoint this will be the day of the week. The start of the week depends on the `EnergyUsageModel` property `MondayIsFirstDay`.\nFor the EnergyLog Month endpoint this will be the month of the year. January = 1, February = 2, March = 3 ... etc.",
+                        "nullable": true
+                    },
+                    "minutes": {
+                        "type": "integer",
+                        "description": "Gets or sets the amount of minutes the thermostat's relay has been on in the given entry period.",
+                        "format": "int32"
+                    },
+                    "energyKWattHour": {
+                        "type": "number",
+                        "description": "Gets or sets the estimated amount of KW hours that have been consumed in the given entry period.",
+                        "format": "double"
+                    },
+                    "chargeKWattHour": {
+                        "type": "number",
+                        "description": "Gets or sets the estimated amount of KW hours charge (price) that have been consumed in the given entry period.",
+                        "format": "double"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "EnergyUsageModel": {
+                "type": "object",
+                "properties": {
+                    "energyUsageType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "energyUsageFrom": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "energyUsageTo": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "mondayIsFirstDay": {
+                        "type": "boolean"
+                    },
+                    "energyUsage": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EnergyUsageEntryModel"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GroupModel": {
+                "type": "object",
+                "properties": {
+                    "groupId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "groupName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "awayMode": {
+                        "type": "boolean"
+                    },
+                    "awaySetPointTemp": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GroupUpdateModel": {
+                "type": "object",
+                "properties": {
+                    "groupId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "awayMode": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ScheduleDayEventModel": {
+                "type": "object",
+                "properties": {
+                    "clock": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "scheduleType": {
+                        "$ref": "#/components/schemas/eScheduleType"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "temperature": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ScheduleDayModel": {
+                "type": "object",
+                "properties": {
+                    "weekDay": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "weekDayGroupNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "events": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ScheduleDayEventModel"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ScheduleModel": {
+                "type": "object",
+                "properties": {
+                    "serialNumber": {
+                        "type": "string",
+                        "description": "Gets or sets thermostats Serial number.",
+                        "nullable": true
+                    },
+                    "days": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ScheduleDayModel"
+                        },
+                        "description": "Gets or sets day schedules.",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false,
+                "description": "Model for ScheduleModel endpoint."
+            },
+            "Status": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "$ref": "#/components/schemas/Code"
+                    },
+                    "message": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "details": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Any"
+                        },
+                        "nullable": true,
+                        "readOnly": true
+                    },
+                    "traceId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ThermostatModel": {
+                "type": "object",
+                "properties": {
+                    "serialNumber": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "setPointTemp": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "scheduleMode": {
+                        "$ref": "#/components/schemas/eScheduleMode"
+                    },
+                    "holdSetPointDateTime": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "swVersion": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "online": {
+                        "type": "boolean"
+                    },
+                    "operatingMode": {
+                        "$ref": "#/components/schemas/eOperatingMode"
+                    },
+                    "isHeating": {
+                        "type": "boolean"
+                    },
+                    "currentTemperature": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "tzOffset": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "error": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ThermostatUpdateModel": {
+                "type": "object",
+                "properties": {
+                    "serialNumber": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "setPointTemp": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "scheduleMode": {
+                        "$ref": "#/components/schemas/eScheduleMode"
+                    },
+                    "holdSetPointDateTime": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "eOperatingMode": {
+                "enum": [
+                    1,
+                    2
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "eScheduleMode": {
+                "enum": [
+                    1,
+                    2,
+                    3
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "eScheduleType": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3
+                ],
+                "type": "integer",
+                "format": "int32"
+            }
+        },
+        "securitySchemes": {
+            "oauth2": {
+                "type": "oauth2",
+                "description": "OAuth2 Implicit Grant (IdentityServer)",
+                "flows": {
+                    "implicit": {
+                        "authorizationUrl": "https://identity.mynuheat.com/connect/authorize",
+                        "scopes": {
+                            "openapi": "Open API"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "oauth2": []
+        }
+    ]
+}

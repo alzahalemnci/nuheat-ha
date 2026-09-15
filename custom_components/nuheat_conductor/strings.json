@@ -1,0 +1,87 @@
+{
+  "application_credentials": {
+    "description": "Enter the Client ID and Client Secret that Chemelex issued for the Nuheat OpenAPI. The client's redirect URL must be `https://my.home-assistant.io/redirect/oauth`."
+  },
+  "config": {
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_account%]",
+      "already_in_progress": "[%key:common::config_flow::abort::already_in_progress%]",
+      "authorize_url_timeout": "[%key:common::config_flow::abort::oauth2_authorize_url_timeout%]",
+      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+      "missing_configuration": "[%key:common::config_flow::abort::oauth2_missing_configuration%]",
+      "missing_credentials": "[%key:common::config_flow::abort::oauth2_missing_credentials%]",
+      "no_url_available": "[%key:common::config_flow::abort::oauth2_no_url_available%]",
+      "oauth_error": "[%key:common::config_flow::abort::oauth2_error%]",
+      "oauth_failed": "[%key:common::config_flow::abort::oauth2_failed%]",
+      "oauth_implementation_unavailable": "[%key:common::config_flow::abort::oauth2_implementation_unavailable%]",
+      "oauth_timeout": "[%key:common::config_flow::abort::oauth2_timeout%]",
+      "oauth_unauthorized": "[%key:common::config_flow::abort::oauth2_unauthorized%]",
+      "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]",
+      "unknown": "[%key:common::config_flow::error::unknown%]",
+      "user_rejected_authorize": "[%key:common::config_flow::abort::oauth2_user_rejected_authorize%]",
+      "wrong_account": "You signed in with a different Nuheat account. Sign in with the account this integration was set up with."
+    },
+    "create_entry": {
+      "default": "[%key:common::config_flow::create_entry::authenticated%]"
+    },
+    "step": {
+      "pick_implementation": {
+        "data": {
+          "implementation": "[%key:common::config_flow::data::implementation%]"
+        },
+        "data_description": {
+          "implementation": "[%key:common::config_flow::description::implementation%]"
+        },
+        "title": "[%key:common::config_flow::title::oauth2_pick_implementation%]"
+      },
+      "reauth_confirm": {
+        "description": "Nuheat needs you to sign in again.",
+        "title": "[%key:common::config_flow::title::reauth%]"
+      }
+    }
+  },
+  "options": {
+    "error": {
+      "min_not_below_max": "The minimum must be lower than the maximum."
+    },
+    "step": {
+      "init": {
+        "data": {
+          "max_temp": "Maximum setpoint",
+          "min_temp": "Minimum setpoint"
+        },
+        "data_description": {
+          "max_temp": "Highest temperature Home Assistant will let you set. The thermostat allows up to 158 °F (70 °C).",
+          "min_temp": "Lowest temperature Home Assistant will let you set. The thermostat allows down to 41 °F (5 °C)."
+        },
+        "title": "Setpoint range"
+      }
+    }
+  },
+  "entity": {
+    "climate": {
+      "thermostat": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "manual": "Manual",
+              "schedule": "Schedule",
+              "temporary_hold": "Temporary hold"
+            }
+          }
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "api_error": {
+      "message": "Nuheat did not accept the change: {error}"
+    },
+    "hvac_mode_not_supported": {
+      "message": "Nuheat thermostats only support heat mode."
+    },
+    "oauth2_implementation_unavailable": {
+      "message": "[%key:common::exceptions::oauth2_implementation_unavailable::message%]"
+    }
+  }
+}
