@@ -52,6 +52,15 @@ Tested on Home Assistant 2026.4.3. Signing in goes through [My Home Assistant](h
 
 The domain is `nuheat_conductor`, so it won't clash with the built-in `nuheat` integration. Remove the broken built-in entry once this one works.
 
+## Official API documentation
+
+Chemelex publishes the Nuheat OpenAPI documentation:
+
+- [Developer guide](https://api.nam.mynuheat.com/): authentication, operating and schedule modes, rate limits, and change notifications (SignalR)
+- [Swagger UI](https://api.mynuheat.com/swagger/index.html), plus the raw OpenAPI specs for [v2](https://api.mynuheat.com/swagger/v2/swagger.json) (used here) and [v1](https://api.mynuheat.com/swagger/v1/swagger.json)
+- [OpenID configuration](https://identity.nam.mynuheat.com/.well-known/openid-configuration) for the identity server
+- [Developer access request form](https://go.chemelex.com/connected-home)
+
 ## Development
 
 ```bash
