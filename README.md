@@ -70,9 +70,6 @@ The tests use `pytest-homeassistant-custom-component`, pinned to the Home Assist
 | `custom_components/nuheat_conductor/` | The integration |
 | `tests/` | Integration and API client tests |
 | `tools/` | Standalone API probe scripts |
-| `notes/api/` | API findings, public Swagger specs, and the saved developer guide |
-| `notes/progress.md` | Build log |
-| `plans/plan.md` | Design decisions and build plan |
 
 ## License
 
